@@ -17,7 +17,7 @@ function Profile() {
 					backgroundColor: "#f8fafc",
 				}}
 			>
-				<Grid item component={"aside"} xs={3} sx={{ marginLeft: "3rem" }}>
+				<Grid item component={"aside"} xs={12} md={3} sx={{ marginLeft: {md: "3rem", xs: "0"} }}>
 					<Box
 						sx={{
 							position: "sticky",
@@ -31,7 +31,7 @@ function Profile() {
 						<ProfileLeftSidebar />
 					</Box>
 				</Grid>
-				<Grid item xs={7}>
+				<Grid item xs={12} md={7}>
 					<Box
 						sx={{
 							backgroundColor: "white",

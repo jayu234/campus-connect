@@ -59,9 +59,9 @@ function ProfileRightSidebar({ type = "my_profile" }) {
 						aria-label="basic tabs example"
 						centered
 					>
-						<Tab label="Post" {...a11yProps(0)} />
-						<Tab label="Questions" {...a11yProps(1)} />
-						<Tab label="Answers" {...a11yProps(2)} />
+						<Tab label="Post" {...a11yProps(0)} sx={{ textTransform: 'none', fontFamily: "inherit" }}/>
+						<Tab label="Questions" {...a11yProps(1)} sx={{ textTransform: 'none', fontFamily: "inherit" }}/>
+						<Tab label="Answers" {...a11yProps(2)} sx={{ textTransform: 'none', fontFamily: "inherit" }}/>
 						{type !== "my_profile" && <Tab label="Following" {...a11yProps(3)} />}
 					</Tabs>
 				</Box>

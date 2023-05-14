@@ -1,13 +1,12 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000/api/v1";
-
 const getFeedData = async () => {
     axios.defaults.withCredentials = true;
-    const response = await axios.get(`${BASE_URL}/feed`);
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/feed`);
     return response.data;
 }
 const getAllTopics = async()=>{
+    axios.defaults.withCredentials = true
     const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/topic/all`, {
         headers: {
             'Content-Type': 'application/json'

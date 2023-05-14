@@ -1,6 +1,7 @@
 const catchAcyncError = require("../middleware/catchAcyncError");
 const Post = require("../models/Post");
 const Topic = require("../models/Topic");
+const User = require("../models/User");
 const ErrorHandler = require("../utils/ErrorHandler");
 const cloudinary = require("cloudinary").v2;
 
@@ -134,7 +135,11 @@ exports.getPostDetails = catchAcyncError(async (req, res, next) => {
 })
 
 exports.getAllPostsOfUser = catchAcyncError(async (req, res, next) => {
-    const allPosts = await Post.find({ 'author._id': req.query.user_id });
+    const user = await User.findById(req.query.user_id);
+    if (!user) {
+        return next(new ErrorHandler(404, "User not found"));
+    }
+    const allPosts = await Post.find({ 'author._id': user._id });
     if (!allPosts) {
         return next(new ErrorHandler(404, "Failed to get all posts"));
     }
