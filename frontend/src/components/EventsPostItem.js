@@ -11,7 +11,7 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp"
 import ThumbDownIcon from "@mui/icons-material/ThumbDown"
 import { BsHeart, BsHeartFill } from "react-icons/bs"
 
-import { Button, Divider, Menu, MenuItem } from "@mui/material"
+import { Button, CardMedia, Divider, Menu, MenuItem } from "@mui/material"
 import EditIcon from "@mui/icons-material/Edit"
 import ShareIcon from "@mui/icons-material/Share"
 import { Box } from "@mui/system"
@@ -66,75 +66,69 @@ export default function EventsPostItem({ post }) {
 	const formattedTime = `${time} ${period}`;
 	return (
 		<Card
-			sx={{
-				marginTop: "1rem",
-				width: "100%",
-				display: "flex",
-				boxShadow: "none",
-				justifyContent: "space-between",
-			}}
+			sx={{ padding: "0.5rem", marginX: "0.5rem", maxWidth: 345, marginTop: "1rem", boxShadow: "none" }}
+		// sx={{
+		// 	marginTop: "1rem",
+		// 	width: "100%",
+		// 	display: "flex",
+		// 	boxShadow: "none",
+		// 	justifyContent: "space-between",
+		// }}
 		>
-			<Box>
-				<CardContent sx={{ padding: "1rem 1.5rem" }}>
-					<Typography
-						sx={{
-							fontFamily: "inherit",
-							fontWeight: "500",
-							fontSize: "1.5rem",
-							cursor: "pointer"
-						}}
-						onClick={()=>{navigate(`/event/${post._id}`)}}
-					>
-						{post.title}
-					</Typography>
-					<Typography
-						sx={{
-							fontFamily: "inherit",
-							color: "black",
-							fontSize: "1.1rem",
-							marginTop: "0.5rem",
-						}}
-					>
-						Time : {formattedTime}
-					</Typography>
-					<Typography
-						sx={{
-							fontFamily: "inherit",
-							color: "black",
-							fontSize: "1.1rem",
-						}}
-					>
-						Date : {` ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`}
-					</Typography>
-				</CardContent>
-
-				<CardActions
-					sx={{ display: "flex", padding: "0.3rem 2rem" }}
-					disableSpacing
-				>
-					<Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
-						<IconButton color={"black"} onClick={handleToggleLikeUnlike}>
-							{isLiked ? <BsHeartFill size={23} color='#757575' /> : <BsHeart size={23} color='#757575' />}
-						</IconButton>
-						{likes > 0 && <Typography color={"black"} component={"span"} variant="body1" fontFamily={"inherit"} marginRight={"1rem"}>
-							{likes}
-						</Typography>}
-					</Box>
-				</CardActions>
-			</Box>
-			{post.image && <Box
+			{post.image && <CardMedia
 				component="img"
 				sx={{
+					width: '90%',
+					marginX: 'auto',
 					height: 200,
-					width: 400,
-					margin: "1rem",
-					borderRadius: "1rem",
-					maxHeight: { xs: 200, md: 300 },
-					maxWidth: { xs: 200, md: 300 },
+					borderRadius: "12px",
 				}}
 				alt="The house from the offer."
-				src={post.image.url}
+				image={post.image.url}
 			/>}
+			<CardContent sx={{ padding: {md: "1rem 1.5rem", xs: "0.5rem 1rem 0"} }}>
+				<Typography
+					sx={{
+						fontFamily: "inherit",
+						fontWeight: "500",
+						fontSize: { md: "30px", xs: "16px" },
+						cursor: "pointer"
+					}}
+					onClick={() => { navigate(`/event/${post._id}`) }}
+				>
+					{post.title}
+				</Typography>
+				<Typography
+					color={"text.secondary"}
+					sx={{
+						fontFamily: "inherit",
+						fontSize: "14px",
+						marginTop: "0.5rem",
+					}}
+				>
+					Time : {formattedTime}
+				</Typography>
+				<Typography
+					color={"text.secondary"}
+					sx={{
+						fontFamily: "inherit",
+						fontSize: "14px",
+					}}
+				>
+					Date : {` ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`}
+				</Typography>
+			</CardContent>
+
+			<CardActions sx={{ display: "flex", padding:{md:"0.3rem 2rem"} }} disableSpacing >
+				<Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
+					<IconButton color={"black"} onClick={handleToggleLikeUnlike} sx={{ width: { xs: "32px", md: "36px" } }}>
+						{isLiked ? <BsHeartFill /> : <BsHeart />}
+					</IconButton>
+					{likes > 0 && <Typography color={"black"} component={"span"} variant="body1" fontFamily={"inherit"} marginRight={"1rem"} sx={{ textTransform: "none", fontSize: { xs: "14px", md: "16px" }, marginRight: { md: "1rem", xs: "0.5rem" } }}>
+						{likes}
+					</Typography>}
+				</Box>
+			</CardActions>
 		</Card>
 	)
 }
