@@ -1,0 +1,188 @@
+export const webdevelopment = [
+	{
+		likes: 60,
+		_id: "63f875a4df01104d549c0e73",
+		title: "The missing piece in Chrome DevTools",
+		content:
+			"Web development has come a long way since its inception, and one tool that has made a significant impact is Chrome DevTools. It has revolutionized how web developers, QAs, and backend developers develop, test & debug web apps. Today, you can't imagine building web apps without access to Chrome Devtools. It provides complete visibility into what's happening inside your web application, from the HTML DOM at any given point to the network requests your app fired.",
+		tags: ["competition"],
+		location: "VV Nager, Anand",
+		edited: false,
+		createdAt: "2023-02-24T08:28:17.015Z",
+		images: ["competition"],
+		author: {
+			avatar: {
+				public_id: "654120",
+				url: "https://www.google.com",
+			},
+			imgName: "z2",
+			_id: "63d66c4166f6cab200624e72",
+			username: "jayu",
+			name: "Jaivik goswami",
+			email: "jayu@gmail.com",
+		},
+	},
+	{
+		likes: 10,
+		_id: "63f875a4df01104d549c0e72",
+		title: "A Tale of Algorithms: Edit Distance in Web Development",
+		content:
+			"Two years ago, I was working on a delivery app. Our client wanted to create a system that could manage users ordering products, and service providers would register on the app to sell their products. Sounds easy, right? In this article, I will tell you the story of how I got to implement a cool Dynamic Programming algorithm to satisfy the requirements of a not so experienced Project Manager. Keep reading until the end; I assure you it will be educational and fun. Let's go!",
+		tags: ["event"],
+		location: "VV Nager, Anand",
+		edited: false,
+		createdAt: "2023-02-24T08:28:17.015Z",
+		images: [],
+		author: {
+			avatar: {
+				public_id: "654120",
+				url: "https://www.google.com",
+			},
+			imgName: "z1",
+			_id: "63d66c4166f6cab200624e72",
+			username: "kashCryst3l",
+			name: "Kashyap Bavadiya",
+			email: "bavadiyakashyap@gmail.com",
+		},
+	},
+	{
+		likes: 520,
+		_id: "63f875a4df01104d549c0e74",
+		title: "What is Javascript Slice?",
+		content:
+			"The slice method in JavaScript is used to extract a portion of an array or string. It takes two parameters: the start index and the end index. The start index specifies the index where the extraction should begin, and the end index specifies the index where the extraction should end (but not including the end index itself). The slice method does not modify the original array or string. Instead, it returns a new array or string that contains the extracted portion.",
+		tags: ["event"],
+		location: "VV Nager, Anand",
+		edited: false,
+		createdAt: "2023-02-24T08:28:17.015Z",
+		images: [],
+		author: {
+			avatar: {
+				public_id: "654120",
+				url: "https://www.google.com",
+			},
+			imgName: "z3",
+			_id: "63d66c4166f6cab200624e72",
+			username: "ruchi2771",
+			name: "Ruchi Shingala",
+			email: "rshingala@gmail.com",
+		},
+	},
+	{
+		likes: 520,
+		_id: "63f875a4df01104d549c0e75",
+		title: "The fundamental of Javascript",
+		content:
+			"JavaScript is a popular programming language used to create interactive websites and web applications. It is a high-level, interpreted language that can be used both on the client-side and server-side of web development. In this blog post, we will go through some of the fundamental concepts of JavaScript.",
+		tags: [],
+		location: "VV Nager, Anand",
+		edited: false,
+		createdAt: "2023-02-24T08:28:17.015Z",
+		images: [],
+		author: {
+			avatar: {
+				public_id: "654120",
+				url: "https://www.google.com",
+			},
+			imgName: "z4",
+			_id: "63d66c4166f6cab200624e72",
+			username: "maitrypatel",
+			name: "Maitry Patel",
+			email: "mpatel@gmail.com",
+		},
+	},
+	{
+		likes: 520,
+		_id: "63f875a4df01104d549c0e76",
+		title: "Priority of CSS in File",
+		content:
+			"The CSS can be used in three ways to design HTML tags, elements as well attributes i.e Inline, Internal, and External Style. Three of them have their own uses and requirements. But who is the first on the priority list when three of the methods will be implemented to specifically target the same tag in HTML? This concept can be understood properly by performing practically in ID. For instance when we use both internal and external style methods to target the same tag.",
+		tags: ["event"],
+		location: "VV Nager, Anand",
+		edited: false,
+		createdAt: "2023-02-24T08:28:17.015Z",
+		images: [],
+		author: {
+			avatar: {
+				public_id: "654120",
+				url: "https://www.google.com",
+			},
+			imgName: "z5",
+			_id: "63d66c4166f6cab200624e72",
+			username: "dikshab",
+			name: "Diksha Bhatia",
+			email: "jayu@gmail.com",
+		},
+	},
+	{
+		likes: 520,
+		_id: "63f875a4df01104d549c0e76",
+		title:
+			"Project 1:Create your own Weather App in 5 Minutes with Django and OpenWeatherAPI",
+		content:
+			"In today's world, knowing the weather conditions has become a crucial aspect of our daily lives. With the advancements in technology, it has become easier to access weather information from anywhere in the world. OpenWeatherAPI is one such tool that provides accurate and up-to-date weather information for any location in the world. In this tutorial, we will be using OpenWeatherAPI to create a weather app. By the end of this tutorial, you will have a fully functional weather app that can display weather information for any location in the world. So, let's get started!",
+		tags: ["event"],
+		location: "VV Nager, Anand",
+		edited: false,
+		createdAt: "2023-02-24T08:28:17.015Z",
+		images: [],
+		author: {
+			avatar: {
+				public_id: "654120",
+				url: "https://www.google.com",
+			},
+			imgName: "z6",
+			_id: "63d66c4166f6cab200624e72",
+			username: "sagar111",
+			name: "Sagar Sohagiya",
+			email: "sagar@gmail.com",
+		},
+	},
+	{
+		likes: 520,
+		_id: "63f875a4df01104d549c0e76",
+		title: "What is NPM and How Does It Help Web Developers?",
+		content:
+			"These packages can do all sorts of cool things, like adding special effects to pictures, making websites load faster, or even helping with security! And just like how you can swap out your bucket of sand for a different color, programmers can easily switch between different NPM packages to find the one that works best for them. So, NPM helps make coding easier and more fun, just like how a bucket makes building sandcastles easier and more fun!",
+		tags: ["event"],
+		location: "VV Nager, Anand",
+		edited: false,
+		createdAt: "2023-02-24T08:28:17.015Z",
+		images: [],
+		author: {
+			avatar: {
+				public_id: "654120",
+				url: "https://www.google.com",
+			},
+			imgName: "z7",
+			_id: "63d66c4166f6cab200624e72",
+			username: "kbusa",
+			name: "Krunal Busa",
+			email: "kbusa@gmail.com",
+		},
+	},
+	{
+		likes: 520,
+		_id: "63f875a4df01104d549c0e76",
+		title:
+			"The importance of user experience design in software development: How to design intuitive and user-friendly interfaces",
+		content:
+			"(1) Enhances User Satisfaction: A well-designed UX can improve user satisfaction and loyalty. It is essential to provide users with an enjoyable and seamless experience when using software. (2) Increases Efficiency: A well-designed interface can increase the efficiency of the software, making it easier for users to navigate and find the information they need. (3) Reduces Errors: A good UX design can reduce errors by making it easier for users to complete tasks accurately and quickly. (4) Saves Time and Money: Investing in UX design upfront can save time and money in the long run. A well-designed interface can reduce the need for user training and support, as users can quickly understand how to use the software.",
+		tags: ["event"],
+		location: "VV Nager, Anand",
+		edited: false,
+		createdAt: "2023-02-24T08:28:17.015Z",
+		images: [],
+		author: {
+			avatar: {
+				public_id: "654120",
+				url: "https://www.google.com",
+			},
+			imgName: "z8",
+			_id: "63d66c4166f6cab200624e72",
+			username: "bhavinvhanesha",
+			name: "Bhavin vhanesha",
+			email: "jayu@gmail.com",
+		},
+	},
+]
