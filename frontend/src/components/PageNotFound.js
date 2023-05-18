@@ -8,38 +8,34 @@ function PageNotFound() {
 	const navigate = useNavigate()
 	return (
 		<>
-			<Header />
+			<Header iconShow={false} btnShow={false} profileBtn={false}/>
 			<Box
 				component={"container"}
 				sx={{
 					display: "flex",
 					flexDirection: "column",
 					width: "75%",
-					marginX: "auto",
+					height: {md:"auto", xs: "70%"},
+					margin: "auto",
 					alignItems: "center",
 					justifyContent: "center",
 				}}
 			>
-				<img
-					src="/images/404_error.png"
-					alt="Page not found"
-					width={300}
-					height={300}
-				/>
+				<Box component={'img'} src="/images/404_error.png" alt="Page not found" sx={{width: {md: "300px", xs: "150px"}, height: {md: "300px", xs: "150px"}}}/>
 				<Box
 					component={"div"}
 					sx={{
-						width: "50%",
+						width: {md: "50%", xs: "70%"},
 						marginX: "auto",
 						display: "flex",
 						flexDirection: "column",
 						alignItems: "center",
 					}}
 				>
-					<Typography fontFamily={"inherit"} fontSize={"3rem"}>
-						Oops, You're Lost!
+					<Typography fontFamily={"inherit"} sx={{fontSize:{md: "48px", xs: "28px"}}} align={"center"}>
+						Oops, <br /> You're Lost!
 					</Typography>
-					<Typography fontFamily={"inherit"} fontSize={"1rem"} align={"center"}>
+					<Typography fontFamily={"inherit"} mt={1} sx={{fontSize:{md: "16px", xs: "14px"}}} align={"center"} color="text.secondary" >
 						The page you're looking for might have been removed, had its name
 						changed or is temporarily unavilable.
 					</Typography>
@@ -50,7 +46,7 @@ function PageNotFound() {
 							navigate("/")
 						}}
 						sx={{
-							marginTop: "1.5rem",
+							marginTop: {md: "1.5rem", xs: "0.75rem"},
 							fontFamily: "inherit",
 							textTransform: "none",
 						}}

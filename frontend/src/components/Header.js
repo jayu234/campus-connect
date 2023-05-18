@@ -25,7 +25,7 @@ const CustomWidthTooltip = styled(({ className, ...props }) => (
 
 const settings = ["Profile", "Edit profile", "Logout"]
 
-function Navbar({ iconShow = true, btnShow = true }) {
+function Navbar({ iconShow = true, btnShow = true, profileBtn = true }) {
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 	const [drawer, setDrawer] = React.useState(false);
 	const toggleDrawer = (event, state) => {
@@ -105,10 +105,10 @@ function Navbar({ iconShow = true, btnShow = true }) {
 					<Toolbar disableGutters>
 						{/* <> */}
 						<Box component={'a'} href="/" sx={{ display: { md: "flex", xs: "none" } }}>
-							<img src="/images/site_logo.png" style={{ height: "36px" }} />
+							<img src="/images/site_logo.png" alt="site_logo" style={{ height: "36px" }} />
 						</Box>
 
-						<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+						{iconShow && <Box sx={{ visibility: iconShow ? 'visible' : 'hidden', flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
 							<IconButton
 								size="large"
 								aria-label="account of current user"
@@ -120,9 +120,9 @@ function Navbar({ iconShow = true, btnShow = true }) {
 							>
 								<MenuIcon />
 							</IconButton>
-							<Drawer anchor="left" open={drawer} onClose={(e)=>{toggleDrawer(e, false)}}>
+							<Drawer anchor="left" open={drawer} onClose={(e) => { toggleDrawer(e, false) }}>
 								<React.Fragment>
-									<img src="/images/site_logo.png" style={{ margin: "1rem", height: "25px" }} />
+									<img src="/images/site_logo.png" alt="site_logo" style={{ margin: "1rem", height: "25px" }} />
 								</React.Fragment>
 								<List sx={{ height: "100vh" }}>
 									{iconBtns.map((item) => (
@@ -149,11 +149,11 @@ function Navbar({ iconShow = true, btnShow = true }) {
 									2023 © CampusConnect
 								</Typography>
 							</Drawer>
+						</Box>}
+						<Box component={'a'} href="/" sx={{ flexGrow: 1, display: { md: "none", xs: "block" } }} >
+							<img src="/images/site_logo.png" alt="site_logo" style={{ height: "25px" }} />
 						</Box>
-						<Box sx={{ flexGrow: 1, display: { md: "none", xs: "block" } }} >
-							<img src="/images/site_logo.png" style={{ height: "25px" }} />
-						</Box>
-						<Box sx={{ marginLeft: "2rem", flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+						<Box sx={{ visibility: iconShow ? 'visible' : 'hidden', marginLeft: "2rem", flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 							{iconBtns.map((item) => (
 								<CustomWidthTooltip
 									key={item.name}
@@ -190,11 +190,11 @@ function Navbar({ iconShow = true, btnShow = true }) {
 							>
 								Ask Doubt
 							</Button>}
-							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+							<IconButton onClick={handleOpenUserMenu} sx={{ visibility: profileBtn ? 'visible' : 'hidden',p: 0 }}>
 								<Avatar alt="profile_pic" src={avatar.url} sx={{ width: { xs: "28px", md: "36px" }, height: { xs: "28px", md: "36px" } }} />
 							</IconButton>
 							<Menu
-								sx={{ mt: '45px' }}
+								sx={{ mt: { md: '45px', xs: '30px' } }}
 								id="menu-appbar"
 								anchorEl={anchorElUser}
 								anchorOrigin={{

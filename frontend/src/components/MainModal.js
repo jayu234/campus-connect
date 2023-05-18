@@ -15,13 +15,13 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: {md: 500, xs: 250},
-    height: {md: "auto", xs: '70%'},
+    width: { md: "500px", xs: "100%" },
+    height: { md: "auto", xs: '100%' },
     bgcolor: 'background.paper',
     border: '1px solid #cecece',
     boxShadow: 24,
     borderRadius: '6px',
-    p: {md: 4, xs: 2},
+    p: { md: 4, xs: 2 },
     ":focus-visible": { outline: "none" }
 };
 function TabPanel(props) {
@@ -36,7 +36,7 @@ function TabPanel(props) {
         >
             {value === index && (
                 <Box sx={{ p: 1 }}>
-                    <Typography component={'div'}>{children}</Typography>
+                    <Typography component={'div'} sx={{ height: { xs: "100%", md: "auto" } }}>{children}</Typography>
                 </Box>
             )}
         </div>
@@ -184,7 +184,10 @@ function MainModal({ open, tabInd, setOpen }) {
             aria-describedby="keep-mounted-modal-description"
         >
             <Box sx={style}>
-                <IconButton onClick={() => { setOpen(false) }} ><CloseRoundedIcon sx={{ width: 20, height: 20 }} /></IconButton>
+                <Box sx={{ display: { md: 'none', xs: 'flex' }, justifyContent: 'space-between', columnGap: '1rem', marginTop: '0.5rem', position: 'relative', marginX: "1rem" }}>
+                    <IconButton onClick={() => { setOpen(false) }} ><CloseRoundedIcon sx={{ width: 20, height: 20 }} /></IconButton>
+                    {value === 0 ? <Button disabled={!doubtText.length || !doubtTags.length || newDoubt.isLoading} onClick={handleDoubtSubmit} variant='contained' sx={{ display: { md: "none", xs: "block" }, textTransform: 'none' }} >Ask</Button> : <Button disabled={!postTitle.length || !postDesc.length || !postTags.length || newPost.isLoading} onClick={handlePostSubmit} variant='contained' sx={{ textTransform: 'none', display: { md: "none", xs: "block" } }}>Post</Button>}
+                </Box>
                 <Box>
                     <Tabs value={value} onChange={handleChange} variant="fullWidth" aria-label="basic tabs example">
                         <Tab label="Ask Doubt" {...a11yProps(0)} sx={{ textTransform: 'none', fontFamily: "inherit" }} />
@@ -193,17 +196,20 @@ function MainModal({ open, tabInd, setOpen }) {
                 </Box>
                 {/* <----- DOUBT ----> */}
                 <TabPanel value={value} index={0}>
-                    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', columnGap: '1rem', marginTop: '0.75rem' }}>
-                        <Avatar alt='Profile pic' src={avatar.url} sx={{ cursor: "pointer" }} />
-                        <TextField onChange={(e) => { setDoubtText(e.target.value) }} multiline fullWidth variant="standard" placeholder='Start your doubt with "How", "What", etc.' sx={{ borderRadius: '16px' }} InputProps={{
+                    <Box sx={{ width: '100%', display: 'flex', flexDirection: "column" ,justifyContent: 'space-between', alignItems: 'flex-start', columnGap: '1rem', marginTop: '0.75rem' }}>
+                        <Box component={'div'} sx={{ display: "flex", width: "100%", alignItems: "flex-start", columnGap: "0.5rem" }} >
+                            <Avatar alt='Profile pic' src={avatar.url} sx={{ width: 30, height: 30, cursor: "pointer" }} />
+                            <Typography variant="body2" fontFamily={"inherit"}>{firstName + " " + lastName}</Typography>
+                        </Box>
+                        <TextField onChange={(e) => { setDoubtText(e.target.value) }} multiline fullWidth variant="standard" placeholder='Start your doubt with "How", "What", etc.' sx={{marginTop: "0.5rem",borderRadius: '16px' }} InputProps={{
                             sx: {
                                 "& .MuiInputBase-input": {
                                     textTransform: 'none',
                                     fontFamily: "'Inter', sans-serif",
-                                    fontSize: "16px"
+                                    fontSize: {md: "16px", xs: "14px"}
                                 },
                             }
-                        }}/>
+                        }} />
                     </Box>
                     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-start', alignItems: 'center', columnGap: '1rem' }}>
                         <Button variant="outlined" size="small" startIcon={<AddIcon />} sx={{ marginTop: "1rem", marginBottom: "0.5rem", borderRadius: '20px', textTransform: 'none', fontFamily: 'inherit' }} onClick={handleDoubtTagBtnClick}>Tag</Button>
@@ -356,7 +362,7 @@ function MainModal({ open, tabInd, setOpen }) {
                 </TabPanel>
                 <Divider />
                 {
-                    value === 0 ? <Box sx={{ display: 'flex', justifyContent: 'flex-end', columnGap: '1rem', marginTop: '0.5rem', position: 'relative' }}>
+                    value === 0 ? <Box sx={{ display: { md: 'flex', xs: 'none' }, justifyContent: 'flex-end', columnGap: '1rem', marginTop: '0.5rem', position: 'relative' }}>
                         <Button onClick={() => { setOpen(false) }} variant='text' sx={{ textTransform: 'none' }}>Cancel</Button>
                         {newDoubt.isLoading && <CircularProgress
                             size={24}
@@ -367,7 +373,7 @@ function MainModal({ open, tabInd, setOpen }) {
                             }}
                         />}
                         <Button disabled={!doubtText.length || !doubtTags.length || newDoubt.isLoading} onClick={handleDoubtSubmit} variant='contained' sx={{ textTransform: 'none' }} >Ask</Button>
-                    </Box> : <Box sx={{ marginTop: '0.5rem' }}>
+                    </Box> : <Box sx={{ marginTop: '0.5rem', display: { md: 'block', xs: 'none' } }}>
                         {/* TODO - image preview */}
                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                             <div>

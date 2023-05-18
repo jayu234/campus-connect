@@ -57,20 +57,20 @@ function EventPageRightSidebar({ data }) {
 	const formattedTime = `${time} ${period}`;
 	return (
 		<>
-			<Box sx={{ marginBottom: "7rem" }}>
+			<Box sx={{ marginBottom: { md: "7rem", xs: "2rem" } }}>
 				<Box
 					sx={{
 						backgroundColor: "white",
 						borderRadius: "1rem",
-						border: "1px solid #e2e8f0cc",
-						":hover": { borderColor: "#29a9f2" },
+						border: "1px solid #e2e8f0cc"
 					}}
 				>
 					<Box
 						sx={{
 							textAlign: "center",
 							marginY: "1rem",
-							fontSize: "1.5rem",
+							marginX: { xs: "1rem", md: "0" },
+							fontSize: { md: "1.5rem", xs: "20px" },
 							fontWeight: "500",
 						}}
 					>
@@ -87,24 +87,26 @@ function EventPageRightSidebar({ data }) {
 						boxShadow: "none",
 					}}
 				>
-					<Box
+					{data.image && <Box
 						component="img"
 						sx={{
-							height: 400,
-							width: "100%",
+							height: { md: 400, xs: 'auto' },
+							width: { md: "100%", xs: '90%' },
 							borderRadius: "1rem",
+							marginX: { xs: 'auto' },
+							marginTop: { xs: '1rem' }
 						}}
-						alt="The house from the offer."
+						alt="Event poster"
 						src={data.image.url}
-					/>
+					/>}
 					<CardContent sx={{ padding: "0rem 1.5rem", marginTop: "1rem" }}>
 						<Typography
 							variant="body1"
 							color="text"
 							sx={{
 								fontFamily: "inherit",
-								textAlign: "justify",
-								fontSize: "1.25rem",
+								textAlign: {md: "justify", xs: "center"},
+								fontSize: { md: "1.25rem", xs: "16px" },
 								fontWeight: "500",
 								marginY: "0.5rem"
 							}}
@@ -114,7 +116,7 @@ function EventPageRightSidebar({ data }) {
 						<Typography
 							variant="body1"
 							color="text"
-							sx={{ fontFamily: "inherit", textAlign: "justify", marginBottom: "0.5rem" }}
+							sx={{ fontFamily: "inherit", textAlign: "justify", marginBottom: "0.5rem", fontSize: { md: "16px", xs: "14px" } }}
 						>
 							{data.description}
 						</Typography>
@@ -122,7 +124,7 @@ function EventPageRightSidebar({ data }) {
 							sx={{
 								fontFamily: "inherit",
 								color: "black",
-								fontSize: "1.1rem",
+								fontSize: { md: "16px", xs: "14px" },
 								marginTop: "0.5rem",
 							}}
 						>
@@ -132,7 +134,7 @@ function EventPageRightSidebar({ data }) {
 							sx={{
 								fontFamily: "inherit",
 								color: "black",
-								fontSize: "1.1rem",
+								fontSize: { md: "16px", xs: "14px" },
 							}}
 						>
 							Date : {` ${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`}
@@ -141,7 +143,7 @@ function EventPageRightSidebar({ data }) {
 							sx={{
 								fontFamily: "inherit",
 								color: "black",
-								fontSize: "1.1rem",
+								fontSize: { md: "16px", xs: "14px" },
 							}}
 						>
 							Location : {data.location.label}
@@ -149,14 +151,14 @@ function EventPageRightSidebar({ data }) {
 					</CardContent>
 
 					<CardActions
-						sx={{ display: "flex", padding: "0.3rem 2rem" }}
+						sx={{ display: "flex", padding: "0.3rem 1rem" }}
 						disableSpacing
 					>
 						<Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
-							<IconButton color={"black"} onClick={handleToggleLikeUnlike}>
-								{isLiked ? <BsHeartFill size={23} color='#757575' /> : <BsHeart size={23} color='#757575' />}
+							<IconButton color={"black"} onClick={handleToggleLikeUnlike} sx={{ width: { xs: "32px", md: "36px" } }}>
+								{isLiked ? <BsHeartFill /> : <BsHeart />}
 							</IconButton>
-							{likes > 0 && <Typography color={"black"} component={"span"} variant="body1" fontFamily={"inherit"} marginRight={"1rem"}>
+							{likes > 0 && <Typography color={"black"} component={"span"} variant="body1" fontFamily={"inherit"} marginRight={"1rem"} sx={{ textTransform: "none", fontSize: { xs: "14px", md: "16px" }, marginRight: { md: "1rem", xs: "0.5rem" } }}>
 								{likes}
 							</Typography>}
 						</Box>

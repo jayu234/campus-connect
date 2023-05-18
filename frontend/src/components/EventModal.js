@@ -129,7 +129,7 @@ function EventModal({ open, setOpen }) {
                             getOptionLabel={(option) => option.label}
                             sx={{ width: 300 }}
                             renderInput={(params) => (
-                                <TextField {...params} label="Location *" In />
+                                <TextField {...params} label="Location *" />
                             )}
                         />
                     </Box>

@@ -7,5 +7,5 @@ const router = express.Router();
 router.route("/answer/create").post(authenticate, createAnswer);
 router.route("/answer/all").get(authenticate, getAllAnswersOfUser);
 router.route("/answer/:id").get(authenticate, getAnswerDetails).put(authenticate, updateAnswer).delete(authenticate, deleteAnswer);
-router.route("answer/like/:id").post(authenticate, likeUnlikeAnswer);
+router.route("/answer/like/:id").post(authenticate, likeUnlikeAnswer);
 module.exports = router;

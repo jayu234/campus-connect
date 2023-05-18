@@ -14,7 +14,7 @@ import EditIcon from "@mui/icons-material/Edit"
 import ShareIcon from "@mui/icons-material/Share"
 import { Box } from "@mui/system"
 import ProfileQuestionModal from "./ProfileQuestionModal"
-import AnswerPageComponent from "./AnswerPageComponent"
+import AnswerItem from "./AnswerItem"
 import { useSelector } from "react-redux"
 
 function AnswerPageRightSidebar({ data }) {
@@ -28,7 +28,8 @@ function AnswerPageRightSidebar({ data }) {
 			<Box>
 				<Box
 					sx={{
-						backgroundColor: "white",
+						padding: {xs: "0.5rem 0.75rem"},
+						backgroundColor: "#fff",
 						borderRadius: "1rem",
 						border: "1px solid #e2e8f0cc",
 						":hover": { borderColor: "#29a9f2" },
@@ -38,7 +39,7 @@ function AnswerPageRightSidebar({ data }) {
 						sx={{
 							textAlign: "center",
 							marginY: "1rem",
-							fontSize: "1.5rem",
+							fontSize: {md: "22px", xs: "20px"},
 							fontWeight: "500",
 						}}
 					>
@@ -54,14 +55,14 @@ function AnswerPageRightSidebar({ data }) {
 						<Avatar
 							src={data.author.avatar.url}
 							aria-label="recipe"
-							sx={{ width: "3rem", height: "3rem" }}
+							sx={{ width: {md: "40px", xs: "36px"}, height: {md: "40px", xs: "36px"} }}
 						/>
 					</Box>
 					<Box
 						sx={{
 							textAlign: "center",
 							margin: "0.5rem 1rem 0.3rem 1rem",
-							fontSize: "1.2rem",
+							fontSize: {md: "20px", xs: "16px"},
 							fontWeight: "400",
 						}}
 					>
@@ -71,7 +72,7 @@ function AnswerPageRightSidebar({ data }) {
 						sx={{
 							textAlign: "center",
 							margin: "0rem 1rem 1rem 1rem",
-							fontSize: "1rem",
+							fontSize: {md: "20px", xs: "14px"},
 							fontWeight: "200",
 						}}
 					>
@@ -102,7 +103,7 @@ function AnswerPageRightSidebar({ data }) {
 				</Box>
 
 				<Box>
-					{data.answers.length > 0 ? data.answers.map((qa, index) => { return <AnswerPageComponent key={index} post={qa} />
+					{data.answers.length > 0 ? data.answers.map((item, index) => { return <AnswerItem key={index} answer={item} />
 					}) : <Typography align="center" mt={4} fontFamily={'inherit'}>Not answerd yet.</Typography>}
 				</Box>
 			</Box>

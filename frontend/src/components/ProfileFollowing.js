@@ -8,7 +8,7 @@ import {
 	Typography,
 	Button,
 } from "@mui/material"
-import { topics } from "../data/topics"
+import { topics } from "../../data/topics"
 
 function ProfileFollowing() {
 	const temp1 = topics.map((item) => ({ ...item, following: true }))

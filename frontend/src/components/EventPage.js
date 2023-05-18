@@ -1,10 +1,6 @@
 import React, { useEffect } from "react"
 import Header from "./Header"
-import ProfileLeftSidebar from "./ProfileLeftSidebar"
-import ProfileRightSidebar from "./ProfileRightSidebar"
 import { Grid, Box, CircularProgress, Typography, Button } from "@mui/material"
-import AnswerPageLeftSidebar from "./AnswerPageLeftSidebar"
-import AnswerPageRightSidebar from "./AnswerPageRightSidebar"
 import EventPageLeftSidebar from "./EventPageLeftSidebar"
 import EventPageRightSidebar from "./EventPageRightSidebar"
 import { useParams } from "react-router-dom"
@@ -21,7 +17,7 @@ function EventPage() {
 	}, [dispatch, id])
 	return (
 		<>
-			<Header iconShow={false} btnShow={false}/>
+			<Header iconShow={false} btnShow={false} />
 			<Grid
 				container
 				spacing={2}
@@ -29,9 +25,11 @@ function EventPage() {
 					height: "100%",
 					display: "flex",
 					backgroundColor: "#f8fafc",
+					flexDirection: { md: "row", xs: "column-reverse" },
+					marginTop: 0
 				}}
 			>
-				<Grid item component={"aside"} xs={4} sx={{ marginLeft: "3rem" }}>
+				<Grid item component={"aside"} xs={12} md={3.5} sx={{ display: { xs: "none", md: "block" }, margin: { md: "0 0 0 3rem", xs: "0 0.5rem 0.5rem" } }}>
 					<Box
 						sx={{
 							position: "sticky",
@@ -45,7 +43,7 @@ function EventPage() {
 						<EventPageLeftSidebar id={id} />
 					</Box>
 				</Grid>
-				<Grid item xs={6}>
+				<Grid item xs={12} md={7} sx={{ margin: { md: "0 0 0 3rem", xs: "0 0.5rem" } }}>
 					{_renderContent()}
 				</Grid>
 			</Grid>

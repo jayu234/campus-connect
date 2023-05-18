@@ -26,7 +26,21 @@ function Credentials(props) {
     <React.Fragment>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          <InputField name={phone.name} label={phone.label} fullWidth />
+          <InputField name={phone.name} label={phone.label} fullWidth InputLabelProps={{
+              sx: {
+                fontSize: { md: "16px", xs: "14px" },
+                fontFamily: "inherit",
+              },
+            }}
+            InputProps={{
+              sx: {
+                "& .MuiInputBase-input": {
+                  textTransform: "none",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: { md: "16px", xs: "14px" },
+                },
+              },
+            }}/>
         </Grid>
         <Grid item xs={12} sm={6}>
           <InputField
@@ -34,6 +48,21 @@ function Credentials(props) {
             label={email.label}
             fullWidth
             autoComplete="username"
+            InputLabelProps={{
+              sx: {
+                fontSize: { md: "16px", xs: "14px" },
+                fontFamily: "inherit",
+              },
+            }}
+            InputProps={{
+              sx: {
+                "& .MuiInputBase-input": {
+                  textTransform: "none",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: { md: "16px", xs: "14px" },
+                },
+              },
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -46,7 +75,20 @@ function Credentials(props) {
                 fullWidth
                 autoComplete="new-password"
                 {...field}
+                InputLabelProps={{
+                  sx: {
+                    fontSize: { md: "16px", xs: "14px" },
+                    fontFamily: "inherit",
+                  },
+                }}
                 InputProps={{
+                  sx: {
+                    "& .MuiInputBase-input": {
+                      textTransform: "none",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: { md: "16px", xs: "14px" },
+                    },
+                  },
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
@@ -76,7 +118,20 @@ function Credentials(props) {
                 fullWidth
                 autoComplete="new-password"
                 {...field}
+                InputLabelProps={{
+                  sx: {
+                    fontSize: { md: "16px", xs: "14px" },
+                    fontFamily: "inherit",
+                  }
+                }}
                 InputProps={{
+                  sx: {
+                    "& .MuiInputBase-input": {
+                      textTransform: "none",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: { md: "16px", xs: "14px" },
+                    },
+                  },
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton

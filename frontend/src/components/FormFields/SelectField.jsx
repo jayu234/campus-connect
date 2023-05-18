@@ -24,7 +24,7 @@ function SelectField(props) {
 
   return (
     <FormControl {...rest} error={isError}>
-      <InputLabel>{label}</InputLabel>
+      <InputLabel sx={{fontFamily: 'inherit', fontSize: {xs: '14px', md: '16px'}}}>{label}</InputLabel>
       <Select
         {...field}
         value={selectedValue ? selectedValue : ""}

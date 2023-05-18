@@ -68,22 +68,17 @@ function Following() {
             return (
               <React.Fragment key={topic._id}>
                 <Grid item xs={12} md={4} sm={6} >
-                  <Card sx={{width: {xs: '100%'} , maxWidth: {md: '300', xs: 'auto'}, border: '1px solid #e2e8f0cc', borderRadius: '0.5rem', paddingBottom: { md: '6px' } }}>
+                  <Card sx={{display: {xs: "flex", md: "block"}, justifyContent:  {xs: "space-between"},width: { xs: '100%' }, maxWidth: { md: '300', xs: 'auto' }, border: '1px solid #e2e8f0cc', borderRadius: '0.5rem', paddingBottom: { md: '6px' } }}>
                     <CardHeader
                       avatar={
                         <Box component={'img'} src={topic.avatar.url} alt='topic_avatar' sx={{ width: '30px', height: '30px', borderRadius: '20px' }} />
-                      }
-                      action={
-                        <IconButton aria-label="settings" sx={{ width: "26px", height: "26px", borderRadius: '16px', backgroundColor: '#efefef', marginTop: "0.75rem", padding: '0.15rem' }} onClick={() => { handleFollowingBtnChange("trending", topic, data) }}
-                        >
-                          {topic.following ? <HiOutlineCheck color='lightgreen' /> : <HiOutlinePlus color='blue' />}
-                        </IconButton>
                       }
                       title={topic.label}
                       titleTypographyProps={{ fontFamily: 'inherit', fontWeight: '500' }}
                       subheader={topic.doubts.length + topic.posts.length + " articles"}
                       subheaderTypographyProps={{ fontFamily: 'inherit' }}
                       sx={{display: { md: 'none', xs: 'flex', alignItems: 'center', justifyContent: 'center' } }}
+                      onClick={() => { navigate(`/topic/${topic._id}`) }}
                     />
                     <CardMedia
                       component="img"
@@ -102,19 +97,24 @@ function Following() {
                         {topic.description.slice(0, 90).concat("...")}
                       </Typography>
                     </CardContent>
-                    <CardActions sx={{ display: { md: 'flex', xs: 'none' }, justifyContent: 'space-between', paddingX: '16px' }}>
+                    <CardActions sx={{justifyContent: 'space-between', paddingX: '16px' }}>
                       <Button
                         id={topic._id}
                         tabIndex={topic.index}
-                        onClick={() => { handleFollowingBtnChange("following",topic, data) }}
+                        onClick={() => { handleFollowingBtnChange("following", topic, data) }}
                         size="small"
                         variant={topic.following ? 'outlined' : 'contained'}
-                        sx={{ textTransform: "none", fontFamily: "inherit" }}
+                        sx={{display: { md: 'flex', xs: 'none' }, textTransform: "none", fontFamily: "inherit" }}
                         disableTouchRipple
                       >
                         {topic.following ? 'Following' : 'Follow'}
                       </Button>
-                      <Button size="small" disableTouchRipple sx={{ textTransform: "none", fontFamily: "inherit" }} onClick={() => { navigate(`/topic/${topic._id}`) }} >Learn More</Button>
+                      <Button size="small" disableTouchRipple sx={{display: { md: 'flex', xs: 'none' }, textTransform: "none", fontFamily: "inherit" }} onClick={() => { navigate(`/topic/${topic._id}`) }} >Learn More</Button>
+
+                      <IconButton aria-label="settings" sx={{display: { md: 'none', xs: 'flex' }, width: "26px", height: "26px", borderRadius: '16px', backgroundColor: '#efefef', padding: '0.15rem' }} onClick={() => { handleFollowingBtnChange("trending", topic, data) }}
+                      >
+                        {topic.following ? <HiOutlineCheck color='lightgreen' /> : <HiOutlinePlus color='blue' />}
+                      </IconButton>
                     </CardActions>
                   </Card>
                 </Grid>

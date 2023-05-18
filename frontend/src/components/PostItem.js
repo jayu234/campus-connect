@@ -12,20 +12,7 @@ import { FiShare2 } from "react-icons/fi"
 import { useSelector } from "react-redux"
 import axios from "axios"
 
-const months = [
-	"January",
-	"February",
-	"March",
-	"April",
-	"May",
-	"June",
-	"July",
-	"August",
-	"September",
-	"October",
-	"November",
-	"December",
-]
+const months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 
 export default function PostItem({ post }) {
 	const { loadUser } = useSelector((state) => state.user)

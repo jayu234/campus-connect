@@ -7,7 +7,7 @@ const styles = {
   formContainer: {
     display: "flex",
     justifyContent: "center",
-    paddingTop: "5rem",
+    paddingTop: {md: "5rem", xs: "2rem"},
   },
   form: {
     width: '700px',

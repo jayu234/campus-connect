@@ -76,10 +76,10 @@ function Login() {
 				alignItems={"center"}
 				justifyContent={"space-between"}
 				sx={{
-					width: "500px",
+					width: { md: "500px", xs: "90%" },
 					marginX: "auto",
 					marginTop: "3rem",
-					padding: "1.5rem",
+					padding: { md: "1.5rem", xs: "0.75rem" },
 					backgroundColor: "#FFFFFF",
 					borderRadius: "10px",
 					border: "1px solid #e2e8f0cc",
@@ -92,137 +92,173 @@ function Login() {
 						fontFamily="inherit"
 						fontWeight={600}
 						align="center"
+						sx={{ fontSize: { xs: "26px", md: "30px" } }}
 					>
 						Login
 					</Typography>
 				</Grid>
 				<Grid item xs={12} sx={{ width: "100%" }}>
-					<React.Fragment>
-						<Formik
-							initialValues={{ email: "", password: "" }}
-							validationSchema={validationSchema}
-							onSubmit={handleSubmit}
-						>
-							{() => (
-								<Form id="login-form">
-									<React.Fragment>
-										<Grid container spacing={3} direction={"column"}>
-											<Grid item xs={12} sm={6}>
-												<Field name="email">
-													{({ field, form }) => (
-														<TextField
-															fullWidth
-															id="email"
-															label="Email *"
-															{...field}
-															error={
-																form.touched.email && Boolean(form.errors.email)
+					<Formik initialValues={{ email: "", password: "" }} validationSchema={validationSchema} onSubmit={handleSubmit}
+					>
+						{() => (
+							<Form id="login-form">
+								<React.Fragment>
+									<Grid container spacing={3} direction={"column"}>
+										<Grid item xs={12} sm={6}>
+											<Field name="email">
+												{({ field, form }) => (
+													<TextField
+														fullWidth
+														id="email"
+														label="Email *"
+														{...field}
+														error={form.touched.email && Boolean(form.errors.email)}
+														helperText={form.touched.email && form.errors.email}
+														autoComplete="username"
+														InputLabelProps={{
+															sx: {
+																fontSize: { md: "16px", xs: "14px" }
 															}
-															helperText={
-																form.touched.email && form.errors.email
+														}}
+														InputProps={{
+															sx: {
+																"& .MuiInputBase-input": {
+																	textTransform: 'none',
+																	fontFamily: "'Inter', sans-serif",
+																	fontSize: { md: "16px", xs: "14px" }
+																},
 															}
-															autoComplete="username"
-														/>
-													)}
-												</Field>
-											</Grid>
-											<Grid item xs={12} sm={6}>
-												<Field name="password">
-													{({ field, form }) => (
-														<TextField
-															type={showPassword ? "text" : "password"}
-															label="Password *"
-															variant="outlined"
-															fullWidth
-															autoComplete="new-password"
-															{...field}
-															InputProps={{
-																endAdornment: (
-																	<InputAdornment position="end">
-																		<IconButton
-																			aria-label="toggle password visibility"
-																			onClick={handleClickShowPassword}
-																			onMouseDown={handleMouseDownPassword}
-																			edge="end"
-																		>
-																			{showPassword ? (
-																				<Visibility />
-																			) : (
-																				<VisibilityOff />
-																			)}
-																		</IconButton>
-																	</InputAdornment>
-																),
-															}}
-															error={
-																form.touched.password &&
-																Boolean(form.errors.password)
-															}
-															helperText={
-																form.touched.password && form.errors.password
-															}
-														/>
-													)}
-												</Field>
-											</Grid>
+														}}
+													/>
+												)}
+											</Field>
 										</Grid>
-									</React.Fragment>
-									<Grid item sx={{ position: "relative" }}>
-										<Button
-											disabled={isLoading}
-											fullWidth
-											type="submit"
-											variant="contained"
-											color="primary"
-											sx={{
-												marginTop: "24px",
-												height: "2.8rem",
-												fontSize: "1rem",
-												letterSpacing: "0.1rem",
-												textTransform: "none",
-											}}
-										>
-											Login
-										</Button>
-										{isLoading && (
-											<CircularProgress
-												size={24}
-												sx={{
-													position: "absolute",
-													bottom: "10%",
-													right: "46%",
-												}}
-											/>
-										)}
+										<Grid item xs={12} sm={6}>
+											<Field name="password">
+												{({ field, form }) => (
+													<TextField
+														type={showPassword ? "text" : "password"}
+														label="Password *"
+														variant="outlined"
+														fullWidth
+														autoComplete="new-password"
+														{...field}
+														InputLabelProps={{
+															sx: {
+																fontSize: { md: "16px", xs: "14px" }
+															}
+														}}
+														InputProps={{
+															sx: {
+																"& .MuiInputBase-input": {
+																	textTransform: 'none',
+																	fontFamily: "'Inter', sans-serif",
+																	fontSize: { md: "16px", xs: "14px" }
+																},
+															},
+															endAdornment: (
+																<InputAdornment position="end">
+																	<IconButton
+																		aria-label="toggle password visibility"
+																		onClick={handleClickShowPassword}
+																		onMouseDown={handleMouseDownPassword}
+																		edge="end"
+																	>
+																		{showPassword ? (
+																			<Visibility />
+																		) : (
+																			<VisibilityOff />
+																		)}
+																	</IconButton>
+																</InputAdornment>
+															),
+														}}
+														error={
+															form.touched.password &&
+															Boolean(form.errors.password)
+														}
+														helperText={
+															form.touched.password && form.errors.password
+														}
+													/>
+												)}
+											</Field>
+										</Grid>
 									</Grid>
-								</Form>
-							)}
-						</Formik>
-					</React.Fragment>
+								</React.Fragment>
+								<Grid item sx={{ position: "relative" }}>
+									<Button
+										disabled={isLoading}
+										fullWidth
+										type="submit"
+										variant="contained"
+										color="primary"
+										sx={{
+											marginTop: "24px",
+											fontSize: "1rem",
+											textTransform: "none",
+										}}
+									>
+										Login
+									</Button>
+									{isLoading && (
+										<CircularProgress
+											size={24}
+											sx={{
+												position: "absolute",
+												bottom: "10%",
+												right: "46%",
+											}}
+										/>
+									)}
+								</Grid>
+							</Form>
+						)}
+					</Formik>
 				</Grid>
 				<Grid
 					item
-					display={"flex"}
-					justifyContent={"center"}
-					alignItems={"center"}
+					display={'flex'}
+					flexDirection={'column'}
+					justifyContent={'flex-start'}
+					alignItems={'center'}
 				>
-					<Typography variant="body2" fontFamily="inherit" align="center">
-						Don't have an account?
-					</Typography>
-					<Button
-						disableTouchRipple
-						disableFocusRipple
-						sx={{
-							textTransform: "none",
-							fontFamily: "inherit",
-							":hover": { backgroundColor: "transparent" },
-						}}
-						onClick={() => {
-							navigate("/signup")
-						}}
-					>
-						Signup
-					</Button>
+					<Box display={'flex'} alignItems={'center'} mt={1}>
+						<Typography variant="body2" fontFamily="inherit" align="center">
+							Don't have an account?
+						</Typography>
+						<Button
+							disableTouchRipple
+							disableFocusRipple
+							sx={{
+								textTransform: "none",
+								fontFamily: "inherit",
+								":hover": { backgroundColor: "transparent" },
+							}}
+							onClick={() => {
+								navigate("/signup")
+							}}
+						>
+							Signup
+						</Button>
+					</Box>
+					<Box display={'flex'} alignItems={'center'}>
+						<Button variant="text" size="small"
+							disableTouchRipple
+							disableFocusRipple
+							sx={{
+								textTransform: "none",
+								fontFamily: "inherit",
+								":hover": { backgroundColor: "transparent" },
+							}}
+							onClick={()=>{dispatch(userLogin({email: "user@gmail.com", password: "User@123"}))}}
+						>
+							Click here
+						</Button>
+						<Typography variant="body2" fontFamily="inherit" align="center">
+							for guest login.
+						</Typography>
+					</Box>
 				</Grid>
 			</Grid>
 			<Stack spacing={2} sx={{ width: "100%" }}>

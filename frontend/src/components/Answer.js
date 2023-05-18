@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Typography, Button, CircularProgress} from "@mui/material"
 import ReplayIcon from '@mui/icons-material/Replay';
 import { Box } from "@mui/system"
-import AnswerPost from "./AnswerPost"
+import DoubtItem from "./DoubtItem"
 import { useDispatch, useSelector } from "react-redux"
 import { getRelatedDoubts } from "../store/doubtSlice"
 
@@ -46,7 +46,7 @@ function _renderContent(isLoading, success, isError, data) {
 			<React.Fragment>
 				{data.length > 0 ? data.map((item) => {
 					return (
-						<AnswerPost key={item._id} item={item} />
+						<DoubtItem key={item._id} doubt={item} />
 					)
 				}): (
 					<Typography align="center" fontFamily={'inherit'} mt={4}>

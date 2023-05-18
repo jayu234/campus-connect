@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react"
 import Header from "./Header"
-import ProfileLeftSidebar from "./ProfileLeftSidebar"
-import ProfileRightSidebar from "./ProfileRightSidebar"
 import { Grid, Box, CircularProgress, Typography, Button } from "@mui/material"
 import AnswerPageLeftSidebar from "./AnswerPageLeftSidebar"
 import AnswerPageRightSidebar from "./AnswerPageRightSidebar"
@@ -20,7 +18,7 @@ function AnswerPage() {
 	}, [dispatch, id])
 	return (
 		<>
-			<Header iconShow={false}/>
+			<Header/>
 			<Grid
 				container
 				spacing={2}
@@ -28,9 +26,11 @@ function AnswerPage() {
 					height: "100%",
 					display: "flex",
 					backgroundColor: "#f8fafc",
+					flexDirection: { md: "row", xs: "column-reverse" },
+					marginTop: 0
 				}}
 			>
-				<Grid item component={"aside"} xs={3.5} sx={{ marginLeft: "3rem" }}>
+				<Grid item component={"aside"} xs={12} md={3.5} sx={{ margin: { md: "0 0 0 3rem", xs: "0 0.5rem 0.5rem" } }}>
 					<Box
 						sx={{
 							position: "sticky",
@@ -44,7 +44,7 @@ function AnswerPage() {
 						<AnswerPageLeftSidebar />
 					</Box>
 				</Grid>
-				<Grid item xs={7}>
+				<Grid item xs={12} md={7} sx={{ margin: { md: "0 0 0 3rem", xs: "0 0.5rem" } }}>
 					{_renderContent()}
 				</Grid>
 			</Grid>
@@ -58,11 +58,7 @@ function AnswerPage() {
 			</Box>
 		}
 		else if (success) {
-			return (
-				<Box>
-					<AnswerPageRightSidebar data={data}/>
-				</Box>
-			)
+			return ( <AnswerPageRightSidebar data={data} />)
 		}
 		else if (isError) {
 			return (

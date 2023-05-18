@@ -51,6 +51,9 @@ function CollegeDetails(props) {
                     fullWidth
                   />
                 )}
+                sx={{
+                  fontFamily: 'inherit'
+                }}
               />
             )}
           </Field>

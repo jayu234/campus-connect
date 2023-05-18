@@ -29,8 +29,8 @@ import { useNavigate } from "react-router-dom";
 
 const steps = [
   "Personal Details",
-  "Login Details",
-  "Education Details",
+  "Credentials",
+  "Educational Details",
   "Area of Interest",
 ];
 const { formId, formField } = model;
@@ -145,12 +145,12 @@ export default function SignupForm() {
           marginTop: "1.5rem",
         }}
       >
-        <Grid item xs={10} sx={{ marginBottom: "1.5rem" }}>
+        <Grid item xs={12} sx={{ marginBottom: "1.5rem" }}>
           <Stepper activeStep={activeStep} alternativeLabel>
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>
-                  <Typography variant="body2" fontFamily="'Inter', sans-serif">
+                  <Typography variant="body2" fontFamily="'Inter', sans-serif" sx={{fontSize: {xs: "12px", md: "14px"}}}>
                     {label}
                   </Typography>
                 </StepLabel>

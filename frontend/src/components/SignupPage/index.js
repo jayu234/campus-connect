@@ -9,7 +9,7 @@ export default function SignupPage() {
 	return (
 		<Box sx={styles.root}>
 			<PageHeader />
-			<div style={styles.formContainer}>
+			<Box  sx={styles.formContainer}>
 				<Container component={"div"} sx={styles.form}>
 					<Typography
 						className="gradientText"
@@ -17,12 +17,13 @@ export default function SignupPage() {
 						fontFamily="inherit"
 						fontWeight={600}
 						align="center"
+						sx={{ fontSize: { xs: "26px", md: "30px" } }}
 					>
 						Sign up
 					</Typography>
 					<SignupForm />
 				</Container>
-			</div>
+			</Box>
 			<div
 				style={{
 					marginTop: "1rem",

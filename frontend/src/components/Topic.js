@@ -36,7 +36,7 @@ function Topic() {
 		setFollow(!follow);
 		if (follow) {
 			axios.defaults.withCredentials = true
-			await axios.post(`${process.env.REACT_APP_BASE_URL}/topic/follow/${data._id}`).then(()=>{
+			await axios.post(`${process.env.REACT_APP_BASE_URL}/topic/follow/${data._id}`).then(() => {
 				setFollowerCnt(followerCnt - 1);
 			})
 				.catch(() => {
@@ -47,7 +47,7 @@ function Topic() {
 		}
 		else {
 			axios.defaults.withCredentials = true
-			await axios.post(`${process.env.REACT_APP_BASE_URL}/topic/follow/${data._id}`).then(()=>{
+			await axios.post(`${process.env.REACT_APP_BASE_URL}/topic/follow/${data._id}`).then(() => {
 				setFollowerCnt(followerCnt + 1);
 			})
 				.catch(() => {
@@ -80,7 +80,7 @@ function Topic() {
 				sx={{
 					display: "flex",
 					marginY: '1rem',
-					fontSize: "1.3rem",
+					fontSize: {md: "18rem", xs: "16px"},
 					fontWeight: "600",
 					background: "#fff",
 					borderRadius: "0.5rem",
@@ -115,61 +115,44 @@ function Topic() {
 		else if (success) {
 			return (
 				<Box
-					sx={{
-						height: "250px", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", objectFit: "cover", backgroundColor: "white", border: "1px solid #83c8e4", borderRadius: "0.5rem",
-						// backgroundImage: `url("/images/topicBG.jpg")`
-					}}
+					sx={{padding: {md: "1rem 2rem", xs: "0.5rem 0"} ,display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", backgroundColor: "white", border: "1px solid #83c8e4", borderRadius: "0.5rem"}}
 				>
-					<Box>
-						<CardHeader
-							avatar={
-								<Avatar src={data.avatar.url} aria-label="recipe" sx={{ borderRadius: "7px", width: "65px", height: "65px" }}
-								/>
-							}
-							title={data.label}
-							subheader={`#${data.hashtag}`}
-							sx={{ padding: "0.5rem 1rem" }}
-							subheaderTypographyProps={{
-								fontFamily: "inherit",
-								fontSize: "15px",
-								fontWeight: "100",
-							}}
-							titleTypographyProps={{
-								fontFamily: "inherit",
-								fontSize: "27px",
-								fontWeight: "800",
-							}}
-						/>
-					</Box>
+					<CardHeader
+						avatar={
+							<Avatar src={data.avatar.url} aria-label="recipe" sx={{ borderRadius: "7px", width: { md: "65px", xs: "48px" }, height: { md: "65px", xs: "48px" } }}
+							/>
+						}
+						title={data.label}
+						subheader={`#${data.hashtag}`}
+						sx={{ padding: "0.5rem 1rem" }}
+						subheaderTypographyProps={{
+							fontFamily: "inherit",
+							fontSize: { md: "16px", xs: "12px" },
+							fontWeight: "100",
+						}}
+						titleTypographyProps={{
+							fontFamily: "inherit",
+							fontSize: { md: "26px", xs: "20px" },
+							fontWeight: "700",
+						}}
+					/>
 					<CardActions sx={{ marginTop: "12px" }}>
 						<Button
 							onClick={() => {
 								handleFollowingBtnChange(follow)
 							}}
-							size="small"
 							variant={"outlined"}
 							sx={{
 								textTransform: "none",
 								fontFamily: "inherit",
-								height: "37.4px",
-								width: "130px",
 								marginRight: "10px",
 								borderRadius: "20px",
 								fontWeight: "500",
-								fontSize: "14px",
+								fontSize: { md: "14px", xs: "12px" },
 							}}
 							disableTouchRipple
+							startIcon={follow ? <BsCheck2 /> : <FiPlus />}
 						>
-							<Box
-								sx={{
-									fontSize: "20px",
-									display: "flex",
-									alignItems: "center",
-									marginRight: "5px",
-								}}
-							>
-								{follow ? <BsCheck2 sx={{ fontWeight: "900" }} /> : <FiPlus />}
-							</Box>
 							{follow ? "Following" : "Follow Tag"}
 						</Button>
 						<Button
@@ -179,32 +162,29 @@ function Topic() {
 								backgroundColor: "#2563EB",
 								borderRadius: "20px",
 								fontFamily: "inherit",
+								fontSize: { md: "14px", xs: "12px" },
 								textTransform: "none",
 								boxShadow: "none",
 								":hover": { boxShadow: "none" },
 							}}
-							startIcon={<CreateIcon fontSize="18" />}
+							startIcon={<CreateIcon sx={{ width: { md: "18px", xs: "14px" }, height: { md: "18px", xs: "14px" } }} />}
 							onClick={() => { setOpenModal(true) }}
 						>
 							Add An Article
 						</Button>
 					</CardActions>
 					<Box sx={{ marginTop: "8px", display: "flex" }}>
-						<Box sx={{ display: "flex", alignItems: "center", marginX: "16px" }}>
-							<Box
-								sx={{ display: "flex", alignItems: "center", marginRight: "5px" }}
-							>
-								<IoPeopleOutline />
-							</Box>
-							{followerCnt} Followers
+						<Box sx={{ display: "flex", alignItems: "center", gap: "6px" ,marginX: {md: "16px", xs: "8px"} }}>
+							<IoPeopleOutline />
+							<Typography component={"span"} fontFamily={"inherit"} sx={{ fontSize: { md: "16px", xs: "12px" } }}>
+								{followerCnt} Followers
+							</Typography>
 						</Box>
-						<Box sx={{ display: "flex", alignItems: "center", marginX: "16px" }}>
-							<Box
-								sx={{ display: "flex", alignItems: "center", marginRight: "5px" }}
-							>
-								<GrArticle />
-							</Box>
-							{data.posts.length + data.doubts.length} Articles
+						<Box sx={{ display: "flex", alignItems: "center", gap: "6px" ,marginX: {md: "16px", xs: "8px"} }}>
+							<GrArticle />
+							<Typography component={"span"} fontFamily={"inherit"} sx={{ fontSize: { md: "16px", xs: "12px" } }}>
+								{data.posts.length + data.doubts.length} Articles
+							</Typography>
 						</Box>
 						<Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", marginX: "16px" }}>
 							<a href={`https://twitter.com/intent/tweet?text=${process.env.REACT_APP_HOST}/topic/${data._id}`} rel="noopener noreferrer" target="_blank" aria-label="Share on Twitter"><IconButton sx={{ ":hover": { backgroundColor: "#E2E8F0" } }}><BsTwitter size={20} color="#64748B" /></IconButton></a>

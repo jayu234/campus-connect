@@ -1,7 +1,7 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 export default function PageHeader() {
 	return (
@@ -15,12 +15,14 @@ export default function PageHeader() {
 					edge="start"
 					color="inherit"
 					aria-label="menu"
-					sx={{ mr: 1 }}
+					sx={{ marginRight: {md: 0.5, xs: 0.25} }}
 				>
-					<img
+					<Box
+						component={'img'}
 						src="/images/logo1.png"
-						width={32}
-						style={{
+						alt="logo"
+						sx={{
+							width: {md: "32px", xs: "28px"},
 							cursor: "pointer",
 							textAlign: "center",
 							display: "flex",
@@ -33,9 +35,9 @@ export default function PageHeader() {
 					sx={{
 						backgroundColor: "#fff",
 						color: "black",
-						fontSize: "1.8rem",
+						fontSize: {md: "28px", xs: "26px"},
 						textAlign: "center",
-						fontFamily: "'Inter', sans-serif",
+						fontFamily: "inherit",
 						fontWeight: "600",
 						cursor: "pointer",
 						textDecoration: "none",

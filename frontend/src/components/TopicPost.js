@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { Grid, Box, Avatar, TextField, Button, Divider, Typography } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 import TopicPostItem from "./TopicPostItem"
 import { useSelector } from "react-redux"
-import ProfileQuestionComponent from "./ProfileQuestionComponent"
-import AnswerPageComponent from "./AnswerPageComponent"
-import AnswerPost from "./AnswerPost"
+import DoubtItem from "./DoubtItem"
+import PostItem from "./PostItem"
 
 function TopicPost() {
 	const { topic: { data } } = useSelector((state) => state.topic);
@@ -28,9 +27,9 @@ function TopicPost() {
 			<Box>
 				{newPosts.length > 0 ? newPosts.map((item) => {
 					if (item?.type === "doubt") {
-						return <AnswerPost key={item._id} item={item} />
+						return <DoubtItem key={item._id} doubt={item} />
 					}
-					return <TopicPostItem key={item._id} post={item} />
+					return <PostItem key={item._id} post={item} />
 				}) : <Typography align="center" fontFamily="inherit">
 					No data to display.
 				</Typography>}

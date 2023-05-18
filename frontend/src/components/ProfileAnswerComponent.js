@@ -2,19 +2,8 @@ import React from "react"
 import Card from "@mui/material/Card"
 import CardHeader from "@mui/material/CardHeader"
 import CardContent from "@mui/material/CardContent"
-import CardActions from "@mui/material/CardActions"
 import Avatar from "@mui/material/Avatar"
-import IconButton from "@mui/material/IconButton"
 import Typography from "@mui/material/Typography"
-import MoreVertIcon from "@mui/icons-material/MoreVert"
-import ThumbUpIcon from "@mui/icons-material/ThumbUp"
-import ThumbDownIcon from "@mui/icons-material/ThumbDown"
-import { Button, Divider, Menu, MenuItem } from "@mui/material"
-import EditIcon from "@mui/icons-material/Edit"
-import ShareIcon from "@mui/icons-material/Share"
-import { Box } from "@mui/system"
-
-import CreateIcon from "@mui/icons-material/Create"
 
 const months = [
 	"January",
@@ -32,11 +21,6 @@ const months = [
 ]
 
 function ProfileAnswerComponent({ post }) {
-	const [anchorEl, setAnchorEl] = React.useState(null)
-	const handleMenu = (event) => {
-		setAnchorEl(event.currentTarget)
-	}
-
 	const date = new Date(post.createdAt)
 	return (
 		<>

@@ -5,7 +5,7 @@ import Login from "./components/Login"
 import Signup from "./components/SignupPage"
 import PageNotFound from "./components/PageNotFound"
 import Following from "./components/Following"
-import Profile from "./components/Profile"
+import Profile from "./pages/Profile"
 import ProfileEdit from "./components/ProfileEdit"
 import Feed from "./components/Feed"
 import Answer from "./components/Answer"
@@ -18,9 +18,7 @@ import { loadUser } from "./store/userSlice"
 import { Grid } from "react-loader-spinner"
 
 function App() {
-	const { isAuthenticated } = useSelector((state) => state.user);
-	const { loadUser: { isLoading } } = useSelector((state) => state.user);
-	const { signup } = useSelector((state) => state.user);
+	const { loadUser: { isLoading }, isAuthenticated, signup } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 	React.useEffect(() => {
 		dispatch(loadUser());

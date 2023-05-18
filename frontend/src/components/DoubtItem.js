@@ -10,23 +10,10 @@ import { BsHeart, BsHeartFill } from "react-icons/bs"
 import {  useSelector } from "react-redux"
 import axios from "axios"
 
-const months = [
-	"January",
-	"February",
-	"March",
-	"April",
-	"May",
-	"June",
-	"July",
-	"August",
-	"September",
-	"October",
-	"November",
-	"December",
-]
+const months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-function AnswerPost({ item }) {
-	const { _id, author, content, answers, createdAt } = item;
+function DoubtItem({ doubt }) {
+	const { _id, author, content, answers, createdAt } = doubt;
 
 	const { loadUser } = useSelector((state) => state.user);
 	const { newAnswer: { data, isLoading, success } } = useSelector((state) => state.answer);
@@ -35,14 +22,14 @@ function AnswerPost({ item }) {
 	const date = new Date(createdAt);
 
 	const [open, setOpen] = useState(false)
-	const [isLiked, setIsLiked] = useState(item.likes.includes(userId));
-	const [likes, setLikes] = useState(item.likes.length);
+	const [isLiked, setIsLiked] = useState(doubt.likes.includes(userId));
+	const [likes, setLikes] = useState(doubt.likes.length);
 	const [answerCount, setAnswerCount] = useState(answers.length);
 	const handleToggleLikeUnlike = async () => {
 		if (isLiked) {
 			setIsLiked(!isLiked);
 			setLikes(likes - 1);
-			await axios.post(`${process.env.REACT_APP_BASE_URL}/doubt/like/${item._id}`).catch((err) => {
+			await axios.post(`${process.env.REACT_APP_BASE_URL}/doubt/like/${doubt._id}`).catch((err) => {
 				setLikes(likes + 1);
 				setIsLiked(!isLiked);
 				console.log("Falied to unlike post", err);
@@ -50,7 +37,7 @@ function AnswerPost({ item }) {
 		} else {
 			setIsLiked(!isLiked);
 			setLikes(likes + 1);
-			await axios.post(`${process.env.REACT_APP_BASE_URL}/doubt/like/${item._id}`).catch((err) => {
+			await axios.post(`${process.env.REACT_APP_BASE_URL}/doubt/like/${doubt._id}`).catch((err) => {
 				setLikes(likes - 1);
 				setIsLiked(!isLiked);
 				console.log("Falied to like post", err);
@@ -59,7 +46,7 @@ function AnswerPost({ item }) {
 	}
 	return (
 		<>
-			{open && <ProfileQuestionModal open={open} tabInd={0} setOpen={setOpen} doubt={item} answerCount={answerCount} setAnswerCount={setAnswerCount}/>}
+			{open && <ProfileQuestionModal open={open} tabInd={0} setOpen={setOpen} doubt={doubt} answerCount={answerCount} setAnswerCount={setAnswerCount}/>}
 			<Card
 				sx={{
 					paddingTop: "0.4rem",
@@ -142,4 +129,4 @@ function AnswerPost({ item }) {
 	)
 }
 
-export default AnswerPost
+export default DoubtItem
