@@ -65,6 +65,8 @@ exports.userLogout = catchAcyncError(async (req, res, next) => {
     res.clearCookie('token', {
         expires: new Date(Date.now()),
         httpOnly: true,
+        sameSite: 'none',
+        secure: true,
         path: '/'
     });
 
