@@ -98,7 +98,7 @@ function Login() {
 					</Typography>
 				</Grid>
 				<Grid item xs={12} sx={{ width: "100%" }}>
-					<Formik initialValues={{ email: "", password: "" }} validationSchema={validationSchema} onSubmit={handleSubmit}
+					<Formik initialValues={{ email: "jaivik@gmail.com", password: "User@123" }} validationSchema={validationSchema} onSubmit={handleSubmit}
 					>
 						{() => (
 							<Form id="login-form">
@@ -241,23 +241,6 @@ function Login() {
 						>
 							Signup
 						</Button>
-					</Box>
-					<Box display={'flex'} alignItems={'center'}>
-						<Button variant="text" size="small"
-							disableTouchRipple
-							disableFocusRipple
-							sx={{
-								textTransform: "none",
-								fontFamily: "inherit",
-								":hover": { backgroundColor: "transparent" },
-							}}
-							onClick={()=>{dispatch(userLogin({email: "user@gmail.com", password: "User@123"}))}}
-						>
-							Click here
-						</Button>
-						<Typography variant="body2" fontFamily="inherit" align="center">
-							for guest login.
-						</Typography>
 					</Box>
 				</Grid>
 			</Grid>
