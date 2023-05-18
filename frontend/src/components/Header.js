@@ -211,7 +211,7 @@ function Navbar({ iconShow = true, btnShow = true, profileBtn = true }) {
 							>
 								{settings.map((setting) => (
 									<MenuItem disableTouchRipple key={setting} onClick={() => { handleAction(setting) }} sx={{ textTransform: 'none', fontFamily: 'inherit', padding: { xs: "5px 10px", md: "6px 18px" }, minHeight: { md: "48px", xs: "20px" } }}>
-										<Typography textAlign="center" fontFamily={"inherit"} sx={{ fontSize: { xs: "0.75rem", sm: "0.85rem", md: "1rem" } }}>{setting}</Typography>
+										<Typography textAlign="center" fontFamily={"inherit"} sx={{ fontSize: { xs: "0.85rem", md: "1rem" } }}>{setting}</Typography>
 									</MenuItem>
 								))}
 							</Menu>

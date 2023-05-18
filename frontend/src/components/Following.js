@@ -111,9 +111,9 @@ function Following() {
                       </Button>
                       <Button size="small" disableTouchRipple sx={{display: { md: 'flex', xs: 'none' }, textTransform: "none", fontFamily: "inherit" }} onClick={() => { navigate(`/topic/${topic._id}`) }} >Learn More</Button>
 
-                      <IconButton aria-label="settings" sx={{display: { md: 'none', xs: 'flex' }, width: "26px", height: "26px", borderRadius: '16px', backgroundColor: '#efefef', padding: '0.15rem' }} onClick={() => { handleFollowingBtnChange("trending", topic, data) }}
+                      <IconButton aria-label="settings" sx={{display: { md: 'none', xs: 'flex' }, width: "26px", height: "26px", borderRadius: '16px', backgroundColor: '#e3e3e3', padding: '0.15rem' }} onClick={() => { handleFollowingBtnChange("trending", topic, data) }}
                       >
-                        {topic.following ? <HiOutlineCheck color='lightgreen' /> : <HiOutlinePlus color='blue' />}
+                        {topic.following ? <HiOutlineCheck color='#22C55E' /> : <HiOutlinePlus color='blue' />}
                       </IconButton>
                     </CardActions>
                   </Card>
