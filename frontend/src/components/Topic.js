@@ -80,7 +80,7 @@ function Topic() {
 				sx={{
 					display: "flex",
 					marginY: '1rem',
-					fontSize: {md: "18rem", xs: "16px"},
+					fontSize: {md: "18px", xs: "16px"},
 					fontWeight: "600",
 					background: "#fff",
 					borderRadius: "0.5rem",
