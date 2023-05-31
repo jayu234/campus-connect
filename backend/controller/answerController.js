@@ -12,17 +12,7 @@ exports.createAnswer = catchAcyncError(async (req, res, next) => {
   session.startTransaction();
   let newAnswer;
   try {
-    newAnswer = new Answer({
-      author: {
-        _id: req.user._id,
-        username: req.user.username,
-        firstName: req.user.firstName,
-        lastName: req.user.lastName,
-        email: req.user.email,
-        avatar: req.user.avatar
-      },
-      ...req.body
-    });
+    newAnswer = new Answer({...req.body, author: {_id: req.user._id}});
     const savedAnswer = await newAnswer.save({ session });
     await Doubt.updateOne(
       { _id: req.body.doubt },
@@ -75,7 +65,7 @@ exports.deleteAnswer = catchAcyncError(async (req, res, next) => {
 });
 
 exports.getAnswerDetails = catchAcyncError(async (req, res, next) => {
-  const answer = await Answer.findById(req.params.id);
+  const answer = await Answer.findById(req.params.id).populate('author');
   if (!answer) {
     return next(new ErrorHandler(404, "Answer not found."));
   }

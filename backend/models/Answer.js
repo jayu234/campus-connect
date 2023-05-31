@@ -7,17 +7,7 @@ const answerSchema = new mongoose.Schema({
         ref: "Doubt"
     },
     author: {
-        type: {
-            _id: mongoose.Schema.Types.ObjectId,
-            username: String,
-            firstName: String,
-            lastName: String,
-            email: String,
-            avatar: {
-                public_id: String,
-                url: String
-            }
-        },
+        type: {_id: mongoose.Schema.Types.ObjectId},
         required: true,
         ref: "User"
     },

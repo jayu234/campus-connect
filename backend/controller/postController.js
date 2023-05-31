@@ -26,18 +26,7 @@ exports.createPost = catchAcyncError(async (req, res, next) => {
 
         req.body.images = imagesLinks;
     }
-    const post = await Post.create({
-        ...req.body,
-        author: {
-            _id: req.user._id,
-            username: req.user.username,
-            firstName: req.user.firstName,
-            lastName: req.user.lastName,
-            name: req.user.name,
-            email: req.user.email,
-            avatar: req.user.avatar
-        }
-    });
+    const post = await Post.create({...req.body, author: {_id: req.user._id}});
     const tags = req.body.tags;
     const bulkOps = [];
     for (let i = 0; i < tags.length; i++) {
@@ -124,7 +113,7 @@ exports.deletePost = catchAcyncError(async (req, res, next) => {
 })
 
 exports.getPostDetails = catchAcyncError(async (req, res, next) => {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id).populate('author');
     if (!post) {
         return next(new ErrorHandler(404, "Post not found!"));
     }

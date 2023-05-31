@@ -131,6 +131,7 @@ const userSlice = createSlice({
         state.signup.isError = false
         state.signup.message = ''
         state.isAuthenticated = false
+        state.loadUser.data = action.payload.result
       })
       .addCase(userSignup.rejected, (state, action) => {
         state.signup.isLoading = false
@@ -169,7 +170,8 @@ const userSlice = createSlice({
         state.isAuthenticated = true
         state.login.success = true
         state.login.isError = false
-        state.login.user = action.payload
+        state.login.user = action.payload.result
+        state.loadUser.data = action.payload.result
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.login.isLoading = false

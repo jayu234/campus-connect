@@ -19,11 +19,11 @@ import { useSelector } from "react-redux"
 
 function AnswerPageRightSidebar({ data }) {
 	const [open, setOpen] = React.useState(false);
-	const { loadUser: { data: { firstName } } } = useSelector((state) => state.user);
+	const { loadUser: { data: { firstName, _id } } } = useSelector((state) => state.user);
 	return (
 		<>
 			{open && (
-				<ProfileQuestionModal open={open} tabInd={0} setOpen={setOpen} />
+				<ProfileQuestionModal open={open} tabInd={0} setOpen={setOpen} doubt={data} />
 			)}
 			<Box>
 				<Box
@@ -72,13 +72,13 @@ function AnswerPageRightSidebar({ data }) {
 						sx={{
 							textAlign: "center",
 							margin: "0rem 1rem 1rem 1rem",
-							fontSize: {md: "20px", xs: "14px"},
+							fontSize: {md: "18px", xs: "14px"},
 							fontWeight: "200",
 						}}
 					>
 						People are searching for a better answer to this question.
 					</Box>
-					<Box sx={{ display: "flex", justifyContent: "center" }}>
+					{data.author._id !== _id && <Box sx={{ display: "flex", justifyContent: "center" }}>
 						<Button
 							variant="contained"
 							component="p"
@@ -99,7 +99,7 @@ function AnswerPageRightSidebar({ data }) {
 						>
 							Give Answer
 						</Button>
-					</Box>
+					</Box>}
 				</Box>
 
 				<Box>

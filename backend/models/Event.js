@@ -2,17 +2,7 @@ const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
     author: {
-        type: {
-            _id: mongoose.Schema.Types.ObjectId,
-            username: String,
-            firstName: String,
-            lastName: String,
-            email: String,
-            avatar: {
-                public_id: String,
-                url: String
-            }
-        },
+        type: {_id: mongoose.Schema.Types.ObjectId},
         required: true,
         ref: "User"
     },

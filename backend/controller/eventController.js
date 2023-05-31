@@ -11,17 +11,7 @@ exports.createEvent = catchAcyncError(async (req, res, next) => {
         const newImage = { public_url: result.public_id, url: result.secure_url }
         req.body.image = newImage;
     }
-    const event = await Event.create({
-        ...req.body,
-        author: {
-            _id: req.user._id,
-            username: req.user.username,
-            firstName: req.user.firstName,
-            lastName: req.user.lastName,
-            email: req.user.email,
-            avatar: req.user.avatar
-        }
-    })
+    const event = await Event.create({ ...req.body, author: { _id: req.user._id } });
     if (!event) {
         return next(new ErrorHandler(500, "Failed to create event"));
     }
@@ -31,17 +21,7 @@ exports.createEvent = catchAcyncError(async (req, res, next) => {
     })
 })
 exports.updateEvent = catchAcyncError(async (req, res, next) => {
-    const event = await Event.findByIdAndUpdate(req.params.id, {
-        author: {
-            _id: req.user._id,
-            username: req.user.username,
-            firstName: req.user.firstName,
-            lastName: req.user.lastName,
-            email: req.user.email,
-            avatar: req.user.avatar
-        },
-        ...req.body,
-    }, {
+    const event = await Event.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true,
         useFindAndModify: false
@@ -55,7 +35,7 @@ exports.updateEvent = catchAcyncError(async (req, res, next) => {
     })
 });
 exports.getEventDetails = catchAcyncError(async (req, res, next) => {
-    const event = await Event.findById(req.params.id);
+    const event = await Event.findById(req.params.id).populate('author');;
     if (!event) {
         return next(new ErrorHandler(404, "Event not found"));
     }

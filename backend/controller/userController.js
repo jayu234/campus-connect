@@ -58,7 +58,7 @@ exports.userLogin = catchAcyncError(async (req, res, next) => {
         return next(new ErrorHandler(401, "Invalid email or password"))
     }
 
-    sendToken(user, res, 200, "Logged in successfully");
+    sendToken(user, res, 200);
 })
 
 exports.userLogout = catchAcyncError(async (req, res, next) => {

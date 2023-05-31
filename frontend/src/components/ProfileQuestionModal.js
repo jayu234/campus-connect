@@ -9,12 +9,14 @@ const style = {
 	top: "50%",
 	left: "50%",
 	transform: "translate(-50%, -50%)",
-	width: 600,
+	width: { md: "500px", xs: "100%" },
+	height: { md: "auto", xs: '100%' },
 	bgcolor: "background.paper",
 	border: "1px solid #cecece",
 	boxShadow: 24,
 	borderRadius: "10px",
-	p: 2,
+	p: { md: 4, xs: 2 },
+	":focus-visible": { outline: "none" }
 }
 
 function ProfileQuestionModal({ open, setOpen, doubt, answerCount = 0, setAnswerCount }) {
@@ -42,10 +44,18 @@ function ProfileQuestionModal({ open, setOpen, doubt, answerCount = 0, setAnswer
 			aria-describedby="keep-mounted-modal-description"
 		>
 			<Box sx={style}>
-				<Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+				<Box sx={{ display: { md: 'none', xs: 'flex' }, justifyContent: 'space-between', columnGap: '1rem', marginY: '0.5rem', position: 'relative', marginX: "1rem" }}>
 					<IconButton onClick={() => { setOpen(false) }}>
 						<CloseRoundedIcon sx={{ width: 20, height: 20 }} />
 					</IconButton>
+					<Button
+						disabled={!text.length || isLoading}
+						onClick={handleAnswerSubmit}
+						variant="contained"
+						sx={{ textTransform: "none", fontFamily: "inherit", display: { md: "none", xs: "block" }  }}
+					>
+						Post
+					</Button>
 				</Box>
 				<Box sx={{ padding: "0rem 1rem 3rem 1rem" }}>
 					<Grid container>
@@ -56,7 +66,7 @@ function ProfileQuestionModal({ open, setOpen, doubt, answerCount = 0, setAnswer
 								sx={{ cursor: "pointer" }}
 							/>
 						</Grid>
-						<Grid item xs={7.5} sx={{ marginTop: "0.5rem" }}>
+						<Grid item xs={7.5} sx={{ marginTop: "0.5rem", marginLeft: { xs: "1.5rem", md: "0.5rem" } }}>
 							<Typography variant="body1" fontFamily={"inherit"}>
 								{doubt.author.firstName + " " + doubt.author.lastName}
 							</Typography>
@@ -102,7 +112,7 @@ function ProfileQuestionModal({ open, setOpen, doubt, answerCount = 0, setAnswer
 				</Box>
 				<Box
 					sx={{
-						display: "flex",
+						display: { md: 'flex', xs: 'none' },
 						justifyContent: "flex-end",
 						columnGap: "1rem",
 						marginTop: "0.5rem",
@@ -114,7 +124,7 @@ function ProfileQuestionModal({ open, setOpen, doubt, answerCount = 0, setAnswer
 							setOpen(false)
 						}}
 						variant="text"
-						sx={{ textTransform: "none" }}
+						sx={{ textTransform: "none", fontFamily: "inherit" }}
 					>
 						Cancel
 					</Button>
@@ -130,7 +140,7 @@ function ProfileQuestionModal({ open, setOpen, doubt, answerCount = 0, setAnswer
 						disabled={!text.length || isLoading}
 						onClick={handleAnswerSubmit}
 						variant="contained"
-						sx={{ textTransform: "none" }}
+						sx={{ textTransform: "none", fontFamily: "inherit" }}
 					>
 						Post
 					</Button>

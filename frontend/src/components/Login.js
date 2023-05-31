@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { userLogin } from "../store/userSlice"
 import PageHeader from "./PageHeader"
-import { Field, Formik, Form } from "formik"
+import { Field, Formik, Form, FormikConsumer } from "formik"
 import * as yup from "yup"
 import { CircularProgress, IconButton, InputAdornment } from "@mui/material"
 import { Visibility, VisibilityOff } from "@mui/icons-material"
@@ -65,6 +65,12 @@ function Login() {
 	const handleSubmit = (values, actions) => {
 		dispatch(userLogin(values))
 	}
+	const handleGuestLogin = (values, setFieldValue) => {
+		console.log("clicked...");
+		setFieldValue("email", "user@gmail.com");
+		setFieldValue("password", "User@123");
+		console.log(values);
+	}
 	return (
 		<Box component="div" sx={{ height: "100vh" }}>
 			<PageHeader />
@@ -97,12 +103,12 @@ function Login() {
 						Login
 					</Typography>
 				</Grid>
-				<Grid item xs={12} sx={{ width: "100%" }}>
-					<Formik initialValues={{ email: "jaivik@gmail.com", password: "User@123" }} validationSchema={validationSchema} onSubmit={handleSubmit}
-					>
-						{() => (
-							<Form id="login-form">
-								<React.Fragment>
+				<Formik initialValues={{ email: "", password: "" }} validationSchema={validationSchema} onSubmit={handleSubmit}
+				>
+					{({ values, setFieldValue, setFieldError, setFieldTouched }) => (
+						<React.Fragment>
+							<Grid item xs={12} sx={{ width: "100%" }}>
+								<Form id="login-form">
 									<Grid container spacing={3} direction={"column"}>
 										<Grid item xs={12} sm={6}>
 											<Field name="email">
@@ -185,64 +191,87 @@ function Login() {
 											</Field>
 										</Grid>
 									</Grid>
-								</React.Fragment>
-								<Grid item sx={{ position: "relative" }}>
+									<Grid item sx={{ position: "relative" }}>
+										<Button
+											disabled={isLoading || !values.email.length || !values.email.length}
+											fullWidth
+											type="submit"
+											variant="contained"
+											color="primary"
+											sx={{
+												marginTop: "24px",
+												fontSize: "1rem",
+												textTransform: "none",
+												fontFamily: "inherit"
+											}}
+										>
+											Login
+										</Button>
+										{isLoading && (
+											<CircularProgress
+												size={24}
+												sx={{
+													position: "absolute",
+													bottom: "10%",
+													right: "46%",
+												}}
+											/>
+										)}
+									</Grid>
+								</Form>
+							</Grid>
+							<Grid
+								item
+								display={'flex'}
+								flexDirection={'column'}
+								justifyContent={'flex-start'}
+								alignItems={'center'}
+							>
+								<Box display={'flex'} alignItems={'center'} mt={1}>
+									<Typography variant="body2" fontFamily="inherit" align="center">
+										Don't have an account?
+									</Typography>
 									<Button
-										disabled={isLoading}
-										fullWidth
-										type="submit"
-										variant="contained"
-										color="primary"
+										disableTouchRipple
+										disableFocusRipple
 										sx={{
-											marginTop: "24px",
-											fontSize: "1rem",
 											textTransform: "none",
+											fontFamily: "inherit",
+											":hover": { backgroundColor: "transparent" },
+										}}
+										onClick={() => {
+											navigate("/signup")
 										}}
 									>
-										Login
+										Signup
 									</Button>
-									{isLoading && (
-										<CircularProgress
-											size={24}
-											sx={{
-												position: "absolute",
-												bottom: "10%",
-												right: "46%",
-											}}
-										/>
-									)}
-								</Grid>
-							</Form>
-						)}
-					</Formik>
-				</Grid>
-				<Grid
-					item
-					display={'flex'}
-					flexDirection={'column'}
-					justifyContent={'flex-start'}
-					alignItems={'center'}
-				>
-					<Box display={'flex'} alignItems={'center'} mt={1}>
-						<Typography variant="body2" fontFamily="inherit" align="center">
-							Don't have an account?
-						</Typography>
-						<Button
-							disableTouchRipple
-							disableFocusRipple
-							sx={{
-								textTransform: "none",
-								fontFamily: "inherit",
-								":hover": { backgroundColor: "transparent" },
-							}}
-							onClick={() => {
-								navigate("/signup")
-							}}
-						>
-							Signup
-						</Button>
-					</Box>
-				</Grid>
+								</Box>
+								<Box display={'flex'} alignItems={'center'}>
+									<Button variant="text" size="small"
+										disableTouchRipple
+										disableFocusRipple
+										sx={{
+											textTransform: "none",
+											fontFamily: "inherit",
+											":hover": { backgroundColor: "transparent" },
+										}}
+										onClick={() => {
+											setFieldTouched("email", false);
+											setFieldError("password", "");
+											setFieldValue("email", 'user@gmail.com');
+											setFieldValue("password", 'User@123');
+										}}
+									>
+										Click here
+									</Button>
+									<Typography variant="body2" fontFamily="inherit" align="center">
+										for guest login.
+									</Typography>
+								</Box>
+							</Grid>
+						</React.Fragment>
+					)}
+				</Formik>
 			</Grid>
 			<Stack spacing={2} sx={{ width: "100%" }}>
 				<Snackbar

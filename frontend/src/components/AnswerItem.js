@@ -76,7 +76,7 @@ function AnswerItem({ answer }) {
 							fontFamily: "inherit",
 							fontWeight: "400",
 							fontSize: "1.1rem",
-							fontSize: { xs: "16px", md: "20px" }
+							fontSize: { xs: "16px", md: "18px" }
 						}}
 					>
 						{answer.content}

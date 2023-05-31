@@ -18,16 +18,12 @@ import { loadUser } from "./store/userSlice"
 import { Grid } from "react-loader-spinner"
 
 function App() {
-	const { loadUser: { isLoading }, isAuthenticated, login, signup } = useSelector((state) => state.user);
+	const { loadUser: { isLoading }, isAuthenticated } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 
 	React.useEffect(() => {
 		dispatch(loadUser());
-	}, [dispatch, signup]);
-
-	React.useEffect(() => {
-		login.success && dispatch(loadUser());
-	}, [login.isLoading])
+	}, [dispatch]);
 
 	function _renderComponent() {
 		if (isLoading) {
