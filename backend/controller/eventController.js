@@ -11,7 +11,16 @@ exports.createEvent = catchAcyncError(async (req, res, next) => {
         const newImage = { public_url: result.public_id, url: result.secure_url }
         req.body.image = newImage;
     }
-    const event = await Event.create({ ...req.body, author: { _id: req.user._id } });
+    const event = await Event.create({
+        ...req.body, author: {
+            _id: req.user._id,
+            username: req.user.username,
+            firstName: req.user.firstName,
+            lastName: req.user.lastName,
+            email: req.user.email,
+            avatar: req.user.avatar
+        }
+    });
     if (!event) {
         return next(new ErrorHandler(500, "Failed to create event"));
     }

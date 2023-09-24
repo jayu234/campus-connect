@@ -9,7 +9,16 @@ exports.createDoubt = catchAcyncError(async (req, res, next) => {
     if (!req.body.images && (req.body.content.length < 10)) {
         return next(new ErrorHandler(400, "Please provide valid content."));
     }
-    const doubt = await Doubt.create({...req.body, author: {_id: req.user._id}});
+    const doubt = await Doubt.create({
+        ...req.body, author: {
+            _id: req.user._id,
+            username: req.user.username,
+            firstName: req.user.firstName,
+            lastName: req.user.lastName,
+            email: req.user.email,
+            avatar: req.user.avatar
+        }
+    });
     const tags = req.body.tags;
     const bulkOps = [];
     for (let i = 0; i < tags.length; i++) {
@@ -36,7 +45,7 @@ exports.updateDoubt = catchAcyncError(async (req, res, next) => {
     if (!req.body.images && (req.body.content.length < 10)) {
         return next(new ErrorHandler(400, "Please provide valid content."));
     }
-    const doubt = await Doubt.findByIdAndUpdate(req.params.id, {...req.body, edited: true}, {
+    const doubt = await Doubt.findByIdAndUpdate(req.params.id, { ...req.body, edited: true }, {
         new: true,
         runValidators: true,
         useFindAndModify: false

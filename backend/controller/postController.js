@@ -26,7 +26,16 @@ exports.createPost = catchAcyncError(async (req, res, next) => {
 
         req.body.images = imagesLinks;
     }
-    const post = await Post.create({...req.body, author: {_id: req.user._id}});
+    const post = await Post.create({
+        ...req.body, author: {
+            _id: req.user._id,
+            username: req.user.username,
+            firstName: req.user.firstName,
+            lastName: req.user.lastName,
+            email: req.user.email,
+            avatar: req.user.avatar
+        }
+    });
     const tags = req.body.tags;
     const bulkOps = [];
     for (let i = 0; i < tags.length; i++) {
