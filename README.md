@@ -2,7 +2,7 @@
 
 <h3 id="tagline" align="center">Share. Grow. Learn.</h3>
 <p id="description" align="center">A community platform built for college students.</p>
-<p id="try-now" align="center"><a href="https://campus-connect-1fq8.onrender.com">Live demo 🚀</a></p>
+<p id="try-now" align="center"><a href="https://www.youtube.com/watch?v=X1-7XYewIds">View demo</a> · <a href="https://campus-connect-1fq8.onrender.com">Try now 🚀</a></p>
 <br />
 
 <p align="center">
