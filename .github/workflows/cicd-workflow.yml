@@ -1,0 +1,43 @@
+name: CICD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    env:
+      DB_URI: ${{ secrets.DB_URI }}
+      HOST: ${{ secrets.HOST }}
+      PORT: ${{ secrets.PORT }}
+      FRONTEND: ${{ secrets.FRONTEND }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      JWT_EXPIRE: ${{ secrets.JWT_EXPIRE }}
+      COOKIE_EXPIRES: ${{ secrets.COOKIE_EXPIRES }}
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_SERVICE: ${{ secrets.SMTP_SERVICE }}
+      SMTP_EMAIL: ${{ secrets.SMTP_EMAIL }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+      - name: Login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build docker image
+        working-directory: backend
+        run: docker build -t jaivik23/campusconnect-backend .
+      - name: Publish image to docker hub
+        run: docker push jaivik23/campusconnect-backend:latest
+  
+  deploy:
+    needs: build
+    runs-on: [aws-ec2]
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull jaivik23/campusconnect-backend:latest
+      - name: Delete old container
+        run: docker rm -f campusconnect-backend
+      - name: Run docker container
+        run: docker run -d -p 5000:5000 -e DB_URI=$DB_URI -e HOST=$HOST -e PORT=$PORT -e FRONTEND=$FRONTEND -e JWT_SECRET=$JWT_SECRET -e JWT_EXPIRE=$JWT_EXPIRE -e COOKIE_EXPIRES=$COOKIE_EXPIRES -e SMTP_HOST=$SMTP_HOST -e SMTP_PORT=$SMTP_PORT -e SMTP_SERVICE=$SMTP_SERVICE -e SMTP_EMAIL=$SMTP_EMAIL -e SMTP_PASSWORD=$SMTP_PASSWORD --name campusconnect-backend jaivik23/campusconnect-backend
